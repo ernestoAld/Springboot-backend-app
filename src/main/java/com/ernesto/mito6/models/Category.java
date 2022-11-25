@@ -24,4 +24,10 @@ public class Category {
 
     @Column(nullable = false)
     private Boolean enabled;
+
+    public Category(String name, String description, Boolean enabled) {
+        this.name = name;
+        this.description = description;
+        this.enabled = enabled;
+    }
 }
