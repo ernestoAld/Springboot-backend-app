@@ -4,9 +4,9 @@ import com.ernesto.mito6.models.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
-public interface ICategoryRepo extends JpaRepository<Category,Integer> {
-
-    Category findByName(String name);
-
+public interface ICategoryRepo extends IGenericRepo<Category,Integer> {
+    Optional<Category> findByName(String name);
 }

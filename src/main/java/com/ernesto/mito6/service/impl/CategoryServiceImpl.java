@@ -48,4 +48,13 @@ public class CategoryServiceImpl implements ICategoryService {
             repo.deleteById(id);
         }
     }
+
+    @Override
+    public Category findByName(String name) {
+        Optional<Category> category = repo.findByName(name);
+        if(category.isEmpty()){
+            throw new RuntimeException("CATEGORY '"+name+"' DOES NOT EXISTS");
+        }
+        return category.get();
+    }
 }
