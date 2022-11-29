@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+//Indicamos que esta clase va a extender los mismos metodos que CRUDImpl pero con un tipo distinto
+//
 @Service
 public class CategoryServiceImpl extends CRUDImpl<Category,Integer> implements ICategoryService {
 

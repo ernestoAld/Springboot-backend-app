@@ -3,6 +3,8 @@ package com.ernesto.mito6.controller;
 import com.ernesto.mito6.models.Category;
 import com.ernesto.mito6.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,28 +17,33 @@ public class CategoryController {
     private ICategoryService service;
 
     @GetMapping
-    public List<Category> readAll() throws Exception{
-        return service.readAll();
+    public ResponseEntity<List<Category>> readAll() throws Exception{
+        List<Category> categories = service.readAll();
+        return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Category readById(@PathVariable Integer id) throws Exception{
-        return service.readById(id);
+    public ResponseEntity<Category> readById(@PathVariable Integer id) throws Exception{
+        Category category = service.readById(id);
+        return new ResponseEntity<>(category,HttpStatus.OK);
     }
 
     @PostMapping
-    public Category create(@RequestBody Category category) throws Exception{
-        return service.save(category);
+    public ResponseEntity<Category> create(@RequestBody Category category) throws Exception{
+        Category saved = service.save(category);
+        return new ResponseEntity<>(saved,HttpStatus.CREATED);
     }
 
     @PutMapping
-    public Category update(@RequestBody Category category) throws Exception{
-        return service.save(category);
+    public ResponseEntity<Category> update(@RequestBody Category category) throws Exception{
+        Category updated = service.save(category);
+        return new ResponseEntity<>(updated,HttpStatus.OK);
     }
 
     @DeleteMapping("/remove/{id}")
-    public void deleteById( @PathVariable Integer id) throws Exception{
+    public ResponseEntity<Void> deleteById( @PathVariable Integer id) throws Exception{
         service.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

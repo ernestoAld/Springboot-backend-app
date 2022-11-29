@@ -4,10 +4,10 @@ import com.ernesto.mito6.repositories.IGenericRepo;
 import com.ernesto.mito6.service.ICRUD;
 
 import java.util.List;
-
+//Aqui usamos los metodos de la interfaz ICRUD y les definimos su funcion
 public abstract class CRUDImpl<T,ID> implements ICRUD<T,ID> {
 
-    protected abstract IGenericRepo<T,ID> getRepo();
+    protected abstract IGenericRepo<T,ID> getRepo(); //metodo que retornará un repositorio del tipo indicado
 
     @Override
     public T save(T t) throws Exception {
@@ -33,4 +33,5 @@ public abstract class CRUDImpl<T,ID> implements ICRUD<T,ID> {
     public void deleteById(ID id) throws Exception {
         getRepo().deleteById(id);
     }
+
 }
