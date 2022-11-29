@@ -7,6 +7,4 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ICategoryRepo extends IGenericRepo<Category,Integer> {
-    Optional<Category> findByName(String name);
-}
+public interface ICategoryRepo extends IGenericRepo<Category,Integer> {}

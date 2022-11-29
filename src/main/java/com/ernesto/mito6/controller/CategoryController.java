@@ -24,11 +24,6 @@ public class CategoryController {
         return service.readById(id);
     }
 
-    @GetMapping("/name/{name}")
-    public Category readByName(@PathVariable String name){
-        return service.findByName(name);
-    }
-
     @PostMapping
     public Category create(@RequestBody Category category) throws Exception{
         return service.save(category);
