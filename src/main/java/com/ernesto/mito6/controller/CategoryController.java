@@ -1,5 +1,6 @@
 package com.ernesto.mito6.controller;
 
+import com.ernesto.mito6.exceptions.ModelNotFoundException;
 import com.ernesto.mito6.models.Category;
 import com.ernesto.mito6.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class CategoryController {
     @GetMapping("/{id}")
     public ResponseEntity<Category> readById(@PathVariable Integer id) throws Exception{
         Category category = service.readById(id);
+        if(category == null){
+            throw new ModelNotFoundException("Category with ID: "+id+" NOT FOUND");
+        }
         return new ResponseEntity<>(category,HttpStatus.OK);
     }
 
@@ -42,8 +46,13 @@ public class CategoryController {
 
     @DeleteMapping("/remove/{id}")
     public ResponseEntity<Void> deleteById( @PathVariable Integer id) throws Exception{
-        service.deleteById(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        try{
+            service.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch (Exception e){
+            throw new ModelNotFoundException("CATEGORY #"+id+" NOT FOUND");
+        }
+
     }
 
 }
