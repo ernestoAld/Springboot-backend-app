@@ -21,7 +21,7 @@ public class SaleDetail {
     @Column(nullable = false)
     private Short quantity;
 
-    @Column(columnDefinition = "decimal(6,2",nullable = false)
+    @Column(columnDefinition = "decimal(6,2)",nullable = false)
     private Double salesPrice;
 
     //-------------RELATIONS FOREIGN KEYS------------------
