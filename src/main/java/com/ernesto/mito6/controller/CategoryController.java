@@ -1,6 +1,7 @@
 package com.ernesto.mito6.controller;
 
 import com.ernesto.mito6.exceptions.ModelNotFoundException;
+import com.ernesto.mito6.exceptions.NoDeleteModelException;
 import com.ernesto.mito6.models.Category;
 import com.ernesto.mito6.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class CategoryController {
             service.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (Exception e){
-            throw new ModelNotFoundException("CATEGORY #"+id+" NOT FOUND");
+            throw new NoDeleteModelException("CATEGORY #"+id+" COULDN'T BE DELETED");
         }
 
     }
